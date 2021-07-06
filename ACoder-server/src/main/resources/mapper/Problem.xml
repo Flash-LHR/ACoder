@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaclimb.ACoder.dao.ProblemMapper">
+    <resultMap id="BaseResultMap" type="com.javaclimb.ACoder.domain.Problem" >
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="problemID" jdbcType="INTEGER" property="problemID"/>
+        <result column="problemName" jdbcType="VARCHAR" property="problemName"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,problemID,problemName,problemLink,problemStatus,activityID,chapterID,contentID
+    </sql>
+
+    <insert id="insert" parameterType="com.javaclimb.ACoder.domain.Problem">
+        insert into problem
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="problemID != null">
+                problemID,
+            </if>
+            <if test="problemName != null">
+                problemName,
+            </if>
+            <if test="problemLink != null">
+                problemLink,
+            </if>
+            <if test="problemStatus != null">
+                problemStatus,
+            </if>
+            <if test="activityID != null">
+                activityID,
+            </if>
+            <if test="chapterID != null">
+                chapterID,
+            </if>
+            <if test="contentID != null">
+                contentID,
+            </if>
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="problemID != null">
+                #{problemID},
+            </if>
+            <if test="problemName != null">
+                #{problemName},
+            </if>
+            <if test="problemLink != null">
+                #{problemLink},
+            </if>
+            <if test="problemStatus != null">
+                #{problemStatus},
+            </if>
+            <if test="activityID != null">
+                #{activityID},
+            </if>
+            <if test="chapterID != null">
+                #{chapterID},
+            </if>
+            <if test="contentID != null">
+                #{contentID},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="update" parameterType="com.javaclimb.ACoder.domain.Problem">
+        update problem
+        <set>
+            <if test="problemID != null">
+                problemID = #{problemID},
+            </if>
+            <if test="problemName != null">
+                problemName = #{problemName},
+            </if>
+            <if test="problemLink != null">
+                problemLink = #{problemLink},
+            </if>
+            <if test="problemStatus != null">
+                problemStatus = #{problemStatus},
+            </if>
+            <if test="activityID != null">
+                 activityID = #{activityID},
+            </if>
+            <if test="chapterID != null">
+                chapterID = #{chapterID},
+            </if>
+            <if test="contentID != null">
+                contentID = #{contentID},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from problem
+        where id=#{id}
+    </delete>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from problem
+        where id=#{id}
+    </select>
+
+    <select id="allProblem" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from problem
+    </select>
+
+    <select id="problemOfName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from problem
+        where problemName like #{problemName}
+    </select>
+
+
+    <select id="problemOfActivityIDAndChapterIDAndContentID" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from problem
+        where activityID = #{activityID} and chapterID = #{chapterID}  and contentID = #{contentID}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

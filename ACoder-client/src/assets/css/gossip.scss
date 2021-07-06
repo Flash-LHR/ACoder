@@ -1,0 +1,36 @@
+@import "var.scss";
+@import "global.scss";
+
+.gossip-block {
+  margin: 30px 150px;
+  margin-top: $header-height + 20px;
+  padding-bottom: 50px;
+  min-width: 800px;
+  background-color: $color-white;
+  // background-color: wheat;
+  text-align: center;
+}
+
+.gossip-title {
+  margin-top: 20px;
+}
+
+.playground {
+  width: 800px;
+  height: 400px;
+  background-color: wheat;
+  // background: url("../img/logo.jpg");
+  margin-top: 20px;
+  margin-left: 20px;
+  background-size: 100% 100%;
+}
+
+.gossip-input {
+  margin-top: 20px;
+  width: 650px;
+  margin-right: 0;
+}
+
+.gossip-btn {
+  margin: 0;
+}

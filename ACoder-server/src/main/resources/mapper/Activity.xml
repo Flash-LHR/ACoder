@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaclimb.ACoder.dao.ActivityMapper">
+    <resultMap id="BaseResultMap" type="com.javaclimb.ACoder.domain.Activity" >
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="activityID" jdbcType="INTEGER" property="activityID"/>
+        <result column="activityName" jdbcType="VARCHAR" property="activityName"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,activityID,activityName
+    </sql>
+
+    <insert id="insert" parameterType="com.javaclimb.ACoder.domain.Activity">
+        insert into activity
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="activityID != null">
+                activityID,
+            </if>
+            <if test="activityName != null">
+                activityName,
+            </if>
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="activityID != null">
+                #{activityID},
+            </if>
+            <if test="activityName != null">
+                #{activityName},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="update" parameterType="com.javaclimb.ACoder.domain.Activity">
+        update activity
+        <set>
+            <if test="activityID != null">
+                activityID = #{activityID},
+            </if>
+            <if test="activityName != null">
+                activityName = #{activityName},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from activity
+        where id=#{id}
+    </delete>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from activity
+        where id=#{id}
+    </select>
+
+    <select id="allActivity" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from activity
+    </select>
+
+    <select id="activityOfName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from activity
+        where activityName like #{activityName}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
